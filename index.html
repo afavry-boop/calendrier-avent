@@ -130,19 +130,27 @@
      * CONFIG – À ADAPTER *
      **********************/
     const TEAM = [
-      "Carine", "Tom", "Annabelle", "Amélie", "Hugo", "Léa", "Jules", "Camille", "Louis", "Sarah",
-      "Nina", "Paul", "Emma", "Théo", "Inès", "Maxime", "Manon", "Chloé", "Axel", "Noémie",
-      "Romain", "Lucie", "Yasmine", "Victor"
+      "Carine", "David", "Annabelle", "Amélie", "Grégoire", "Romain D", "Mostapha", "Alexandra", "Camille", "Simon",
+      "Paul", "Maxime", "Romain P", "Nathalie", "Morgann", "Michael"
     ];
 
     // 24 anecdotes – exemple; mets les tiennes. "answer" = prénom exact affiché dans TEAM.
-    const DAYS = Array.from({length:24}, (_,i)=>i+1).map((day)=>({
-      day,
-      anecdote: `Anecdote du jour ${day} — remplace ce texte par une vraie anecdote croustillante.`,
-      answer: TEAM[day-1] || TEAM[0],
-      // Réponses acceptées en plus (variantes, surnoms)
-      aliases: TEAM[day-1] ? [TEAM[day-1], TEAM[day-1].toLowerCase()] : []
-    }));
+    
+    const DAYS = [
+  {
+    day: 1,
+    anecdote: "Quand j'était petite, je me suis faite renversée par un drodaire au cirque😅",
+    answer: "Annabelle",
+    aliases: ["Nathalie", "Annabelle", "Camille"]
+  },
+  ...Array.from({length:23}, (_,i)=>({
+    day: i+2,
+    anecdote: `Anecdote du jour ${i+2} — à personnaliser plus tard.`,
+    answer: TEAM[i+1] || TEAM[0],
+    aliases: TEAM[i+1] ? [TEAM[i+1], TEAM[i+1].toLowerCase()] : []
+  }))
+];
+
 
     /**********************
      * ÉTAT & STOCKAGE     *
