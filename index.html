@@ -58,7 +58,6 @@
     .result{margin-top:10px; font-weight:700}
     .ok{color:var(--accent-2)}
     .ko{color:var(--danger)}
-    .reveal{display:none; margin-top:12px; padding:10px 12px; border:1px dashed rgba(255,255,255,.18); border-radius:12px;}
 
     .footer{margin-top:18px; display:flex; align-items:center; justify-content:space-between; gap:12px}
     .confetti{position:fixed; pointer-events:none; inset:0; overflow:hidden; z-index:60}
@@ -99,12 +98,10 @@
           </div>
 
           <div class="result" id="result"></div>
-          <div class="reveal" id="reveal"></div>
         </div>
 
         <div class="footer">
           <div class="hint">Points : <span id="score">0</span></div>
-          <button class="btn" id="revealBtn">Révéler la réponse</button>
         </div>
       </div>
     </div>
@@ -186,7 +183,7 @@
     }
 
     const backdrop=$("backdrop"), modalTitle=$("modal-title"), anecdote=$("anecdote"), answerSelect=$("answerSelect"),
-          submitBtn=$("submit"), result=$("result"), revealBox=$("reveal"), revealBtn=$("revealBtn");
+          submitBtn=$("submit"), result=$("result");
 
     let currentDay=1;
     function buildOptions(){
@@ -205,8 +202,6 @@
       answerSelect.value=saved.answer||"";
       result.textContent="";
       result.className="result";
-      revealBox.style.display="none";
-      revealBox.textContent=`Réponse : ${d.answer}`;
       backdrop.style.display="flex";
     }
 
@@ -219,17 +214,17 @@
       if(!guess){result.textContent="Choisis un nom avant de valider";result.className="result ko";return;}
       const good=check(currentDay,guess);
       state.opened[currentDay]={answer:guess,correct:good};
-      if(good){result.textContent="Bravo 🎉 C’était la bonne réponse !";result.className="result ok";celebrate();}
-      else{result.textContent="Mmmh, pas sûr·e… essaie encore 😄";result.className="result ko";}
+      if(good){
+        const d=DAYS.find(x=>x.day===currentDay);
+        result.textContent=`Bien joué 🎉 C’était ${d.answer} ✨`;
+        result.className="result ok";
+        celebrate();
+      } else {
+        result.textContent="Loupé...! Essaie quelqu’un d’autre 😄";
+        result.className="result ko";
+      }
       state.score=Object.values(state.opened).filter(x=>x.correct).length;
       save();renderGrid();
-    });
-
-    revealBtn.addEventListener("click",()=>{
-      const d=DAYS.find(x=>x.day===currentDay);
-      revealBox.style.display="block";
-      result.textContent=`C'était ${d.answer} ✨`;
-      result.className="result ok";
     });
 
     function updateScoreUI(){$("score").textContent=state.score||0;}
