@@ -41,8 +41,18 @@
     .door.opened{background:linear-gradient(160deg, #1f2a4b, #16203a);}    
     .badge{position:absolute; top:10px; left:10px; font-size:10px; padding:6px 8px; border-radius:999px; background:rgba(224,181,103,.15); border:1px solid rgba(224,181,103,.55); color:#fbe4b6;}
 
-    .modal-backdrop{position:fixed; inset:0; background:rgba(5,8,13,.55); backdrop-filter: blur(6px); display:none; align-items:center; justify-content:center; z-index:50}
-    .modal{width:min(680px, calc(100vw - 32px)); background:var(--card); border:1px solid rgba(255,255,255,.12); border-radius:22px; box-shadow: var(--shadow); overflow:hidden}
+    .modal-backdrop{position:fixed; inset:0; background:rgba(5,8,13,.55); backdrop-filter: blur(6px); display:none; align-items:flex-start; justify-content:center; padding-top:5vh; z-index:50}
+    .modal{width:min(680px, calc(100vw - 32px)); background:var(--card); border:1px solid rgba(255,255,255,.12); border-radius:22px; box-shadow: var(--shadow); overflow:hidden; transition:transform 0.3s ease;}
+    .modal.shake{animation:shake 0.3s ease;}
+    @keyframes shake {
+      0%{transform:translateX(0);}
+      20%{transform:translateX(-8px);}
+      40%{transform:translateX(8px);}
+      60%{transform:translateX(-5px);}
+      80%{transform:translateX(5px);}
+      100%{transform:translateX(0);}
+    }
+
     .modal-head{display:flex; align-items:center; justify-content:space-between; padding:16px 18px; border-bottom:1px solid rgba(255,255,255,.08)}
     .modal-title{font-size:18px; font-weight:800}
     .modal-close{background:transparent; border:none; color:var(--muted); font-size:22px; cursor:pointer}
@@ -59,7 +69,7 @@
     .ok{color:var(--accent-2)}
     .ko{color:var(--danger)}
 
-    .footer{margin-top:18px; display:flex; align-items:center; justify-content:space-between; gap:12px}
+    .footer{margin-top:18px; display:flex; justify-content:flex-end;}
     .confetti{position:fixed; pointer-events:none; inset:0; overflow:hidden; z-index:60}
   </style>
 </head>
@@ -82,7 +92,7 @@
 
   <!-- Modal -->
   <div class="modal-backdrop" id="backdrop" aria-hidden="true">
-    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" id="modalBox">
       <div class="modal-head">
         <div class="modal-title" id="modal-title">Jour 1</div>
         <button class="modal-close" id="close">×</button>
@@ -101,7 +111,7 @@
         </div>
 
         <div class="footer">
-          <div class="hint">Points : <span id="score">0</span></div>
+          <!-- Plus de points affichés -->
         </div>
       </div>
     </div>
@@ -144,7 +154,6 @@
     }
     function save(){
       localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
-      updateScoreUI();
     }
 
     const today = new Date();
@@ -182,8 +191,8 @@
       });
     }
 
-    const backdrop=$("backdrop"), modalTitle=$("modal-title"), anecdote=$("anecdote"), answerSelect=$("answerSelect"),
-          submitBtn=$("submit"), result=$("result");
+    const backdrop=$("backdrop"), modalBox=$("modalBox"), modalTitle=$("modal-title"), anecdote=$("anecdote"),
+          answerSelect=$("answerSelect"), submitBtn=$("submit"), result=$("result");
 
     let currentDay=1;
     function buildOptions(){
@@ -222,12 +231,13 @@
       } else {
         result.textContent="Loupé...! Essaie quelqu’un d’autre 😄";
         result.className="result ko";
+        modalBox.classList.add("shake");
+        setTimeout(()=>modalBox.classList.remove("shake"),400);
       }
       state.score=Object.values(state.opened).filter(x=>x.correct).length;
       save();renderGrid();
     });
 
-    function updateScoreUI(){$("score").textContent=state.score||0;}
     $("reset").addEventListener("click",()=>{if(confirm("Réinitialiser tes réponses et le score ?")){state.opened={};state.score=0;save();renderGrid();}});
     $("toggle-dev").addEventListener("click",()=>{state.dev=!state.dev;save();renderGrid();$("toggle-dev").textContent=state.dev?"Mode test (ON)":"Mode test";});
 
@@ -259,7 +269,7 @@
       const now=new Date();
       const fmt=`${pad(now.getDate())}/${pad(now.getMonth()+1)}/${now.getFullYear()}`;
       $("today-pill").textContent=`Aujourd’hui : ${fmt}`;
-      renderGrid();updateScoreUI();
+      renderGrid();
     })();
   </script>
 </body>
