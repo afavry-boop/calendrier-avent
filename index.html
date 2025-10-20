@@ -1,375 +1,288 @@
 <!DOCTYPE html>
 <html lang="fr">
+<head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Calendrier de l’Avent Cambon Partners</title>
 
+  <!-- Police script pour le sous-titre -->
+  <link href="https://fonts.googleapis.com/css2?family=Parisienne&display=swap" rel="stylesheet">
 
-<!-- Police Lora avec italiques -->
-<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      /* Palette & tokens */
+      --bg:#F5ECE2;          /* Fond beige principal de la page */
+      --card:#F5ECE2;        /* Fond clair des cartes et du modal */
+      --ink:#2b1f1f;         /* Couleur principale du texte (presque noir) */
+      --muted:#7f8aa3;       /* Texte secondaire (gris bleuté) */
+      --accent:#e0b567;      /* Doré pour les confettis et détails */
+      --accent-2:#2d8a6a;    /* vert succès */
+      --danger:#b51212;      /* rouge erreur */
+      --red:#BE1917;         /* rouge élégant */
+      --shadow:0 8px 18px rgba(0,0,0,.10); /* Ombre douce */
+    }
 
-<style>
-  :root {
-    --bg: #EDE6DC;
-    --card: #EDE6DC;
-    --muted: #7f8aa3;
-    --accent: #e0b567;
-    --accent-2: #24b47e;
-    --danger: #e35d6a;
-    --red: #BE1917;
-    --shadow: 0 4px 10px rgba(0, 0, 0, .06);
-    --radius: 18px;
-  }
+    html, body{
+      margin:0;
+      background:var(--bg);
+      color:var(--ink);
+      font-family:"Times New Roman", serif;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+    }
 
-  html, body {
-    margin: 0;
-    background: var(--bg);
-    color: #2b1f1f;
-    font-family: 'Lora', serif;
-    font-weight: 400;
-  }
+    *{ box-sizing:border-box; }
 
-  * {
-    font-family: 'Lora', serif !important;
-    box-sizing: border-box;
-  }
+    .wrap{
+      max-width:1100px;
+      margin:64px auto 0;
+      padding:0 20px;
+    }
 
-  .wrap {
-    max-width: 1100px;
-    margin: 100px auto;
-    padding: 0 20px;
-  }
+    /* Header */
+    .title{
+      text-align:center;
+      font-size:54px;
+      font-weight:500;
+      color:var(--red);
+      line-height:1.25;
+    }
+    .subtitle{
+      text-align:center;
+      font-family:"Parisienne", cursive;
+      font-size:40px;
+      color:var(--red);
+      margin-top:6px;
+    }
 
-  .header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 12px;
-    margin-bottom: 16px;
-  }
-
-  .title {
-    font-size: 46px;
-    font-weight: 600;
-    letter-spacing: 0px;
-      color: #BE1917;
-  }
-
-.subtitle {
-  font-family: 'Lora', serif;
-  font-size: 20px;
-  color: #8a2c2c;
-  font-style: italic;
-  margin-top: 12px;
-}
-
-  .toolbar {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    justify-content: flex-end;  
-    max-width: 1100px;           /* distance au-dessus si tu veux qu'il remonte */
-    margin: 40px auto 0;    /* centré horizontalement */
-    padding-right: 20px; 
-    padding-bottom: 40px; 
-  }
-
-  .pill {
-    background: rgba(255,255,255,.06);
-    border: 1px solid rgba(255,255,255,.1);
-    padding: 8px 12px;
-    border-radius: 999px;
-    font-size: 12px;
-    color: var(--muted);
-  }
-
-.btn {
-  height: 54px;
-  padding: 0 28px;
-  border: none;
-  border-radius: 10px;
-  background: #15312f;
+    /* Toolbar (en bas de page) */
+    .toolbar{
+      display:flex;
+      gap:12px;
+      justify-content:flex-end;
+      max-width:1100px;
+      margin:28px auto 24px;
+      padding:0 20px;
+    }
+    .pill{
+      background:rgba(255,255,255,.4);
+      border:1px solid rgba(0,0,0,.08);
+      padding:8px 12px;
+      border-radius:999px;
+      font-size:12px;
+      color:#6c6a6a;
+    }
+    .btn{
+  background: #000;
   color: #fff;
-  font-weight: 700;
-  font-family: 'Lora', serif;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.btn:hover {
-  background: #1c403b;
-  transform: translateY(-1px);
-}
-
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(6, minmax(120px, 1fr));
-    gap: 25px;
-    margin-top: 40px; /* espace entre le titre et la grille */
-
-  }
-
-  @media (max-width:900px) { .grid { grid-template-columns: repeat(4, minmax(100px, 1fr)); } }
-  @media (max-width:600px) { .grid { grid-template-columns: repeat(3, minmax(90px, 1fr)); } }
-
-  .door {
-    position: relative;
-    background: var(--card);
-    border: 1px solid #DED7CF;
-    border-radius: 30px(--radius);
-    height: 120px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 700;
-    font-size: 28px;
-    letter-spacing: .5px;
-    box-shadow: var(--shadow);
-    overflow: hidden;
-    transition: all 0.2s ease-in-out;
-    color: var(--red);
-  }
-
- .door:hover:not(.opened) {
-  box-shadow: 0 6px 14px rgba(0,0,0,.12);
-  transform: translateY(-2px);
-}
-
-
-  .door .num {
-    position: absolute;
-    top: 8px;
-    left: 10px;
-    color: var(--red);
-    font-size: 32px;
-    font-weight: 600;
-  }
-
-  .door.locked {
-    background: var(--card);
-    cursor: not-allowed;
-    filter: none;
-    opacity: 1; /* plus de gris */
-  }
-
-  .door.opened {
-    background: #D0B1B1;
-  }
-
-  .badge {
-    position: absolute;
-    bottom: 10px;
-    right: 10px;
-    font-size: 12px;
-    font-style: italic; /* italique chic */
-    padding: 3px 6px;
-    border-radius: 0px;
-    border: 1px solid #E99D9C;
-    color: #BE1917;
-    letter-spacing: 0.3px;
-    background: rgba(255, 255, 255, 0.4);
-  }
-
-  /* === MODAL STYLE === */
-  .modal-backdrop {
-    position: fixed;
-    inset: 0;
-    background: rgba(222, 215, 207, 0.407);
-    backdrop-filter: blur(6px);
-    display: none;
-  align-items: center;
-  justify-content: center;
-  padding-top: 10vh;
-  z-index: 50;
-  }
-
-  /* Conteneur principal du modal */
-  .modal {
-   width: min(720px, calc(100vw - 40px));
-  background: #f9f3eb;
+  border-radius: 6px;
   border: none;
-  border-radius: 0px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
-  overflow: hidden;
+  padding: 8px 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+    }
+    .btn:hover{ transform:translateY(-1px); }
 
-  }
+    /* Grille */
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(6, minmax(120px, 1fr));
+      gap:18px;
+      margin-top:28px;
+    }
+    @media (max-width:900px){ .grid{ grid-template-columns:repeat(4, minmax(100px,1fr)); } }
+    @media (max-width:600px){ .grid{ grid-template-columns:repeat(3, minmax(90px,1fr)); } }
 
-  .modal.shake {
-    animation: shake 0.3s ease;
-  }
+    .door{
+      position:relative;
+      background:var(--card);
+      border:none;   
+      height:120px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-weight:200;
+      font-size:48px;
+      letter-spacing:.5px;
+      box-shadow:var(--shadow);
+      overflow:hidden;
+      transition:all .2s ease-in-out;
+      color:var(--red);
+      cursor:pointer;
+      font-family:"Times New Roman"
+    }
+    .door:hover:not(.opened){ box-shadow:0 10px 18px rgba(0,0,0,.12); transform:translateY(-2px); }
 
-  @keyframes shake {
-    0% { transform: translateX(0); }
-    20% { transform: translateX(-8px); }
-    40% { transform: translateX(8px); }
-    60% { transform: translateX(-5px); }
-    80% { transform: translateX(5px); }
-    100% { transform: translateX(0); }
-  }
+    .door.locked{
+      cursor:not-allowed;
+      filter:none;
+      opacity:1; /* on ne grise plus */
+    }
+    .door.opened{
+      background:#F5ECE2;
+      box-shadow: none;
+      border:none
+    }
 
-  .modal-head {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 24px 28px;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    .door .num{
+      position:absolute;
+      top:8px; left:10px;
+      color:var(--red);
+      font-size:32px;
+      font-weight:500;
+    }
 
-  }
+    .door.opened .num {
+  color: #D9A0A0; /* num de la case */
+}
 
-  .modal-title {
-      font-size: 40px; /* plus grand */
-  font-weight: 700;
-  font-family: 'Lora', serif; /* pour garder la cohérence avec le reste */
-  color: #BE1917; /* même couleur que le texte */
+    .badge{
+      position:absolute;
+      bottom:10px; right:10px;
+      font-size:12px;
+      font-style:italic;
+      padding:4px 8px;
+      border-radius:8px;
+      border:1px solid #E99D9C;
+      color:var(--red);
+      background:rgba(255,255,255,.5);
+    }
 
-  }
+    /* Modal */
+    .modal-backdrop{
+      position:fixed; inset:0;
+      background:none ;
+      backdrop-filter:blur(6px);
+      display:none; align-items:flex-start; justify-content:center;
+      padding-top:12vh; z-index:50;
+    }
+    
+    .modal{
+      width: min(760px, calc(100vw - 32px));
+      background: #F4ECE3;
+      border:1px solid rgba(0,0,0,.08);
+      border-radius:8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+      overflow:hidden;
+      color:var(--ink);
+      transform:translateY(0);
+      transition:transform .25s ease;
+      font-family: "Times New Roman", serif;
+    }
+    .modal.shake{ animation:shake .3s ease; }
+    @keyframes shake{
+      0%{transform:translateX(0)} 20%{transform:translateX(-8px)}
+      40%{transform:translateX(8px)} 60%{transform:translateX(-5px)}
+      80%{transform:translateX(5px)} 100%{transform:translateX(0)}
+    }
 
-  .modal-close {
-    background: transparent;
-    border: none;
-    color: var(--muted);
-    font-size: 22px;
-    cursor: pointer;
-  }
+    .modal-head{
+      display:flex; align-items:center; justify-content:space-between;
+      padding:20px 33px;
+    }
+    .modal-title{
+      font-size:64px; font-weight:500; color:var(--red);
+      letter-spacing:.5px;
+    }
+    .modal-close{
+      background:transparent; border:none; font-size:24px; color:#846;
+      cursor:pointer;
+    }
+    .modal-body{ padding:10px 33px 20px; 
+    }
 
- .modal-body {
-  padding: 36px 44px 50px;
+    .anecdote{
+      background: none; /* pas de fond coloré */
+      border: none;
+      padding: 8px 0 12px;
+      font-size: 18px;
+      line-height: 1.6;
+      color: #BE1917; /* texte rouge élégant */
+    }
+
+    .form {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
- }
-
-.anecdote {
-  background: transparent;
-  border: none;
-  padding: 0;
-  margin-bottom: 40px;
-  font-size: 20px;
-font-style: italic;
-  font-family: 'Lora', serif;
-    color: #2b1d1b;
-  line-height: 1.8;
-  text-align:left;
+  gap: 10px;
+  margin-top: 18px;
 }
 
-/* Question "À qui appartient..." */
 .hint {
-  font-size: 18px;
-  color: #2b1d1b;
-  margin-bottom: 12px;
-  font-family: 'Lora', serif;
+  font-family: "Parisienne" ;
+  font-size: 20px;
+  color: #2b1f1f;
+  margin-bottom: 4px;
 }
 
-
-  .form {
-    display: grid;
-    gap: 12px;
-    margin-top: 14px;
-  }
-
-.row {
+  .row {
   display: flex;
+  gap: 10px;
   align-items: center;
-  gap: 12px;
-  width: 100%;
 }
 
-.row select{
-  flex:1;
-  height:var(--field-h);     /* ✅ même hauteur que le bouton */
-  padding:0 16px;
-  border-radius:12px;
-  line-height:1;             /* évite le décalage vertical */
-  display:block;
-  margin:0;                  /* supprime marges par défaut */
-}
+    @media (max-width:560px){ .row{ grid-template-columns:1fr; } }
 
-.row .btn{
-  height:var(--field-h);     /* ✅ même hauteur que le select */
-  padding:0 24px;            /* largeur du bouton */
-  display:inline-flex;       /* centre le texte verticalement */
-  align-items:center;
-  justify-content:center;
-  border-radius:12px;
-  margin:0;
-}
+    select{
+    flex: 1;
+  padding: 8px 10px;
+  border-radius: 6px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  background: #F4ECE3;
+  color: #2b1f1f;
+  font-family: "Lora", "Times New Roman", serif;
+  font-size: 15px;
+  outline: none;
+    }
 
+    .result{ margin-top:10px; font-weight:700; }
+    .ok{ color:var(--accent-2); }
+    .ko{ color:var(--danger); }
 
+    .reveal{
+      display:none; margin-top:12px;
+      border:1px dashed rgba(0,0,0,.18);
+      border-radius:12px; padding:10px 12px;
+      color:var(--ink);
+    }
+    .media{
+      display:none; margin-top:14px;
+    }
+    .media iframe, .media video{
+      width:100%; aspect-ratio:16/9; border:0; border-radius:12px;
+      background:#000;
+    }
 
-  @media(max-width:560px){ .row { grid-template-columns: 1fr; } }
+    .footer{ margin-top:12px; display:flex; justify-content:flex-end; }
 
-select {
-  flex: 1;
-  height: 54px;
-  background: #0e1424;
-  color: #fff;
-  border: none;
-  border-radius: 10px;
-  padding: 0 18px;
-  font-size: 18px;
-  font-family: 'Lora', serif;
-  cursor: pointer;
-}
-
-/* Résultat après validation */
-.result {
-  margin-top: 24px;
-  font-weight: 700;
-  font-family: 'Lora', serif;
-}
-
-.ok {
-  color: #2d8a6a;
-}
-
-.ko {
-  color: #b51212;
-}
-
-  .footer {
-    margin-top: 18px;
-    display: flex;
-    justify-content: flex-end;
-  }
-
-  .confetti {
-    position: fixed;
-    pointer-events: none;
-    inset: 0;
-    overflow: hidden;
-    z-index: 60;
-  }
-</style>
-
+    /* Confetti */
+    .confetti{ position:fixed; pointer-events:none; inset:0; overflow:hidden; z-index:60; }
+  </style>
+</head>
 
 <body>
   <div class="wrap">
-    <div class="header">
-      <div>
-        <div class="title"> Le Calendrier de l’Avent <br>
-Cambon Partners</div>
-        <div class="subtitle">À qui appartient le FunFact du jour ?</div>
-      </div>
-
-    </div>
+    <div class="title">Le Calendrier de l’Avent Cambon Partners</div>
+    <div class="subtitle">À qui appartient le FunFact du jour ?</div>
 
     <div class="grid" id="grid"></div>
   </div>
 
-
-
-<div class="toolbar">
-  <span class="pill" id="today-pill"></span>
-  <button class="btn" id="toggle-dev">Mode test</button>
-  <button class="btn" id="reset">Réinitialiser</button>
-</div>
-
+  <div class="toolbar">
+    <span class="pill" id="today-pill"></span>
+    <button class="btn" id="toggle-dev">Mode test</button>
+    <button class="btn" id="reset">Réinitialiser</button>
+  </div>
 
   <!-- Modal -->
   <div class="modal-backdrop" id="backdrop" aria-hidden="true">
     <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" id="modalBox">
       <div class="modal-head">
-        <div class="modal-title" id="modal-title">Jour 1</div>
+        <div class="modal-title" id="modal-title">01</div>
         <button class="modal-close" id="close">×</button>
       </div>
+
       <div class="modal-body">
         <div class="anecdote" id="anecdote"></div>
 
@@ -381,11 +294,13 @@ Cambon Partners</div>
           </div>
 
           <div class="result" id="result"></div>
+          <div class="reveal" id="reveal"></div>
+
+          <!-- Zone média (vidéo YouTube ou MP4) -->
+          <div class="media" id="media"></div>
         </div>
 
-        <div class="footer">
-          <!-- Plus de points affichés -->
-        </div>
+        <div class="footer"></div>
       </div>
     </div>
   </div>
@@ -393,29 +308,43 @@ Cambon Partners</div>
   <canvas class="confetti" id="confetti"></canvas>
 
   <script>
+    /***************
+     * CONFIG TEAM *
+     ***************/
     const TEAM = [
-      "David", "Michael", "Morgann", "Laurent", "Guillaume T.", "Jonathan", "Romain D", "Guillaume E.", "Nicolas SP.", "Nicolas P.",
-      "Alexandre A.", "Thomas B.", "Min", "Aubert", "Julien", "Maxime", "Gabriel", "Florian", "Robin", "Raphaël", "Camille", "Simon", "Younes",
-      "Victor", "Jordan", "Grégoire", "Baptiste", "Pierre", "Yvette", "Télio", "Alain", "Maxime P.", "Alexandre C.", "Luca", "Chadi", "Nicolas O.",
-      "Marius", "Paul", "Lily", "Nicolas R.", "Thomas K.", "Yahia", "Elena", "Mathieu", "Alexandre H.", "Juliette", "Louis", "Anna", "Romain P.",
-      "Briac", "Mostapha", "Jeremy", "Carine", "Amélie", "Pauline", "Adèle", "Thomas A.", "Nathalie", "Annabelle", "Gaiané", "Alexandra", "Anselme"
+      "David","Michael","Morgann","Laurent","Guillaume T.","Jonathan","Romain D","Guillaume E.","Nicolas SP.","Nicolas P.",
+      "Alexandre A.","Thomas B.","Min","Aubert","Julien","Maxime","Gabriel","Florian","Robin","Raphaël","Camille","Simon","Younes",
+      "Victor","Jordan","Grégoire","Baptiste","Pierre","Yvette","Télio","Alain","Maxime P.","Alexandre C.","Luca","Chadi","Nicolas O.",
+      "Marius","Paul","Lily","Nicolas R.","Thomas K.","Yahia","Elena","Mathieu","Alexandre H.","Juliette","Louis","Anna","Romain P.",
+      "Briac","Mostapha","Jeremy","Carine","Amélie","Pauline","Adèle","Thomas A.","Nathalie","Annabelle","Gaiané","Alexandra","Anselme"
     ];
 
+    /********************
+     * 24 JOURS (démo)  *
+     * Ajoute "video"   *
+     * (YouTube embed   *
+     *  ou .mp4 direct) *
+     ********************/
     const DAYS = [
       {
         day: 1,
         anecdote: "Quand j’étais petite, je me suis faite renverser par un dromadaire au cirque 😅",
         answer: "Annabelle",
-        aliases: ["Annabelle", "Nathalie", "Camille"]
+        aliases: ["Annabelle","Nathalie","Camille"],
+        video: "https://www.youtube.com/embed/dQw4w9WgXcQ" // Exemple : YouTube
       },
       ...Array.from({length:23}, (_,i)=>({
         day: i+2,
         anecdote: `Anecdote du jour ${i+2} — à personnaliser plus tard.`,
         answer: TEAM[i+1] || TEAM[0],
-        aliases: TEAM[i+1] ? [TEAM[i+1], TEAM[i+1].toLowerCase()] : []
+        aliases: TEAM[i+1] ? [TEAM[i+1], TEAM[i+1].toLowerCase()] : [],
+        video: "" // ← tu pourras mettre un lien ici (YouTube ou .mp4) pour chaque jour
       }))
     ];
 
+    /**********************
+     * ÉTAT & PERSISTENCE *
+     **********************/
     const STORAGE_KEY = "advent-quiz-v1";
     const state = { dev:false, score:0, opened:{} };
 
@@ -425,125 +354,206 @@ Cambon Partners</div>
         if(raw) Object.assign(state, JSON.parse(raw));
       }catch(_){}
     }
-    function save(){
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
-    }
+    function save(){ localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }
 
+    /**************
+     * UTILITAIRE *
+     **************/
     const today = new Date();
     const month = today.getMonth()+1;
     const date = today.getDate();
     function isUnlocked(day){ return state.dev || (month===12 && day<=date); }
-
-    function $(id){return document.getElementById(id)}
+    function $(id){ return document.getElementById(id); }
     function el(tag, attrs={}, children=[]){
-      const node=document.createElement(tag);
-      Object.entries(attrs).forEach(([k,v])=>{ if(k==="class") node.className=v; else if(k==="text") node.textContent=v; else node.setAttribute(k,v); });
-      [].concat(children).forEach(c=>node.appendChild(typeof c==="string"?document.createTextNode(c):c));
+      const node = document.createElement(tag);
+      Object.entries(attrs).forEach(([k,v])=>{
+        if(k==="class") node.className=v;
+        else if(k==="text") node.textContent=v;
+        else node.setAttribute(k,v);
+      });
+      [].concat(children).forEach(c=> node.appendChild(typeof c==="string" ? document.createTextNode(c) : c));
       return node;
     }
-
-    function norm(s){return (s||"").toString().normalize("NFD").replace(/[\u0300-\u036f]/g,"").trim().toLowerCase();}
+    function norm(s){ return (s||"").toString().normalize("NFD").replace(/[\u0300-\u036f]/g,"").trim().toLowerCase(); }
     function check(day, guess){
-      const d=DAYS.find(x=>x.day===day);
-      const target=norm(d.answer);
-      const aliases=(d.aliases||[]).map(norm);
-      const g=norm(guess);
-      return g===target||aliases.includes(g);
+      const d = DAYS.find(x=>x.day===day);
+      const target = norm(d.answer);
+      const aliases = (d.aliases||[]).map(norm);
+      const g = norm(guess);
+      return g===target || aliases.includes(g);
     }
 
-    const grid=$("grid");
-    function renderGrid(){
-      grid.innerHTML="";
-      DAYS.forEach(d=>{
-        const opened=!!state.opened[d.day];
-        const door=el("button",{class:`door ${!isUnlocked(d.day)?'locked':''} ${opened?'opened':''}`,"data-day":d.day});
-        door.appendChild(el("span",{class:"badge",text:opened?"ouvert":(isUnlocked(d.day)?"dispo":"verrouillé")}));
-        const dayLabel = String(d.day).padStart(2, '0');
-door.appendChild(el("div", {class:"num", text: dayLabel}));
+    /************
+     *  RENDER  *
+     ************/
+    const grid = $("grid");
 
-        door.addEventListener("click",()=>{if(!isUnlocked(d.day))return;openModal(d.day);});
+    function renderGrid(){
+      grid.innerHTML = "";
+      // Ordre aléatoire à l’affichage
+      const order = [...DAYS].sort(()=> Math.random() - 0.5);
+
+      order.forEach(d=>{
+        const opened = !!state.opened[d.day];
+        const door = el("button", {
+          class:`door ${!isUnlocked(d.day)?'locked':''} ${opened?'opened':''}`,
+          "data-day":d.day
+        });
+        door.appendChild(el("span", {class:"badge", text: opened ? "ouvert" : (isUnlocked(d.day) ? "dispo" : "verrouillé")}));
+        const dayLabel = String(d.day).padStart(2,'0');
+        door.appendChild(el("div", {class:"num", text:dayLabel}));
+        door.addEventListener("click", ()=>{ if(!isUnlocked(d.day)) return; openModal(d.day); });
         grid.appendChild(door);
       });
     }
 
-    const backdrop=$("backdrop"), modalBox=$("modalBox"), modalTitle=$("modal-title"), anecdote=$("anecdote"),
-          answerSelect=$("answerSelect"), submitBtn=$("submit"), result=$("result");
+    /************
+     *  MODAL   *
+     ************/
+    const backdrop = $("backdrop"),
+          modalBox = $("modalBox"),
+          modalTitle = $("modal-title"),
+          anecdote = $("anecdote"),
+          answerSelect = $("answerSelect"),
+          submitBtn = $("submit"),
+          result = $("result"),
+          revealBox = $("reveal"),
+          mediaBox = $("media");
 
-    let currentDay=1;
+    let currentDay = 1;
+
     function buildOptions(){
-      answerSelect.innerHTML="";
-      answerSelect.appendChild(el("option",{value:"",text:"— Sélectionne un nom —"}));
-      TEAM.forEach(name=>answerSelect.appendChild(el("option",{value:name,text:name})));
+      answerSelect.innerHTML = "";
+      answerSelect.appendChild(el("option",{value:"", text:"— Sélectionne un nom —"}));
+      TEAM.forEach(name => answerSelect.appendChild(el("option",{value:name, text:name})));
     }
 
     function openModal(day){
-      currentDay=day;
-      const d=DAYS.find(x=>x.day===day);
-      modalTitle.textContent = day.toString().padStart(2, '0');
-      anecdote.textContent=d.anecdote;
+      currentDay = day;
+      const d = DAYS.find(x=>x.day===day);
+      modalTitle.textContent = String(day).padStart(2,'0');
+      anecdote.textContent = d.anecdote;
       buildOptions();
-      const saved=state.opened[day]||{};
-      answerSelect.value=saved.answer||"";
-      result.textContent="";
-      result.className="result";
-      backdrop.style.display="flex";
+
+      const saved = state.opened[day] || {};
+      answerSelect.value = saved.answer || "";
+      result.textContent = "";
+      result.className = "result";
+      revealBox.style.display = "none";
+      revealBox.textContent = "";
+      mediaBox.style.display = "none";
+      mediaBox.innerHTML = "";
+
+      backdrop.style.display = "flex";
     }
+    function closeModal(){ backdrop.style.display = "none"; }
+    $("close").addEventListener("click", closeModal);
+    backdrop.addEventListener("click", (e)=>{ if(e.target===backdrop) closeModal(); });
 
-    function closeModal(){ backdrop.style.display="none"; }
-    $("close").addEventListener("click",closeModal);
-    backdrop.addEventListener("click",e=>{if(e.target===backdrop)closeModal();});
-
-    submitBtn.addEventListener("click",()=>{
-      const guess=answerSelect.value;
-      if(!guess){result.textContent="Choisis un nom avant de valider";result.className="result ko";return;}
-      const good=check(currentDay,guess);
-      state.opened[currentDay]={answer:guess,correct:good};
-      if(good){
-        const d=DAYS.find(x=>x.day===currentDay);
-        result.textContent=`Bien joué 🎉 C’était ${d.answer} ✨`;
-        result.className="result ok";
-        celebrate();
-      } else {
-        result.textContent="Loupé...! Essaie quelqu’un d’autre 😄";
-        result.className="result ko";
-        modalBox.classList.add("shake");
-        setTimeout(()=>modalBox.classList.remove("shake"),400);
+    submitBtn.addEventListener("click", ()=>{
+      const guess = answerSelect.value;
+      if(!guess){
+        result.textContent = "Choisis un nom avant de valider";
+        result.className = "result ko";
+        return;
       }
-      state.score=Object.values(state.opened).filter(x=>x.correct).length;
-      save();renderGrid();
+      const good = check(currentDay, guess);
+      state.opened[currentDay] = {answer:guess, correct:good};
+
+      const d = DAYS.find(x=>x.day===currentDay);
+
+      if(good){
+        result.textContent = `Bien joué 🎉 C’était ${d.answer} !`;
+        result.className = "result ok";
+        revealBox.textContent = `Réponse : ${d.answer}`;
+        revealBox.style.display = "block";
+        celebrate();
+
+        // Affiche la vidéo si définie (YouTube ou MP4)
+        if(d.video){
+          let mediaEl;
+          if(/\.(mp4|webm|ogg)$/i.test(d.video)){
+            mediaEl = document.createElement("video");
+            mediaEl.src = d.video;
+            mediaEl.controls = true;
+          }else{
+            mediaEl = document.createElement("iframe");
+            mediaEl.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
+            mediaEl.allowFullscreen = true;
+            mediaEl.src = d.video; // prévoir une URL embed YouTube
+          }
+          mediaBox.innerHTML = "";
+          mediaBox.appendChild(mediaEl);
+          mediaBox.style.display = "block";
+        }
+      }else{
+        result.textContent = "Loupé...! Essaie quelqu’un d’autre 😄";
+        result.className = "result ko";
+        modalBox.classList.add("shake");
+        setTimeout(()=> modalBox.classList.remove("shake"), 400);
+      }
+
+      state.score = Object.values(state.opened).filter(x=>x.correct).length;
+      save();
+      renderGrid();
     });
 
-    $("reset").addEventListener("click",()=>{if(confirm("Réinitialiser tes réponses et le score ?")){state.opened={};state.score=0;save();renderGrid();}});
-    $("toggle-dev").addEventListener("click",()=>{state.dev=!state.dev;save();renderGrid();$("toggle-dev").textContent=state.dev?"Mode test (ON)":"Mode test";});
+    /*****************
+     *  TOOLBAR BTN  *
+     *****************/
+    $("reset").addEventListener("click", ()=>{
+      if(confirm("Réinitialiser tes réponses ?")){
+        state.opened = {};
+        state.score = 0;
+        save(); renderGrid();
+      }
+    });
+    $("toggle-dev").addEventListener("click", ()=>{
+      state.dev = !state.dev;
+      save(); renderGrid();
+      $("toggle-dev").textContent = state.dev ? "Mode test (ON)" : "Mode test";
+    });
 
-    const confettiCanvas=$("confetti");const ctx=confettiCanvas.getContext('2d');let particles=[];
-    function resize(){confettiCanvas.width=window.innerWidth;confettiCanvas.height=window.innerHeight;}
-    window.addEventListener('resize',resize);resize();
+    /****************
+     *  CONFETTIS   *
+     ****************/
+    const confettiCanvas = $("confetti");
+    const ctx = confettiCanvas.getContext('2d');
+    let particles = [];
+    function resize(){ confettiCanvas.width = window.innerWidth; confettiCanvas.height = window.innerHeight; }
+    window.addEventListener('resize', resize); resize();
+
     function celebrate(){
-      for(let i=0;i<150;i++){particles.push({x:Math.random()*confettiCanvas.width,y:-10,s:Math.random()*6+2,v:Math.random()*3+2,r:Math.random()*360,a:1});}
+      for(let i=0;i<160;i++){
+        particles.push({x:Math.random()*confettiCanvas.width, y:-10, s:Math.random()*6+2, v:Math.random()*3+2, r:Math.random()*360, a:1});
+      }
       requestAnimationFrame(tick);
-      setTimeout(()=>{particles=[];ctx.clearRect(0,0,confettiCanvas.width,confettiCanvas.height);},1500);
+      setTimeout(()=>{ particles=[]; ctx.clearRect(0,0,confettiCanvas.width,confettiCanvas.height); }, 1500);
     }
     function tick(){
       ctx.clearRect(0,0,confettiCanvas.width,confettiCanvas.height);
       particles.forEach(p=>{
-        p.y+=p.v;p.r+=6;p.a-=0.01;
-        ctx.save();ctx.translate(p.x,p.y);ctx.rotate(p.r*Math.PI/180);
-        ctx.globalAlpha=Math.max(p.a,0);
-        const c=Math.floor(p.r)%3;
-        ctx.fillStyle=c===0?'#e0b567':(c===1?'#24b47e':'#e35d6a');
+        p.y += p.v; p.r += 6; p.a -= 0.01;
+        ctx.save();
+        ctx.translate(p.x,p.y); ctx.rotate(p.r*Math.PI/180);
+        ctx.globalAlpha = Math.max(p.a, 0);
+        const c = Math.floor(p.r)%3;
+        ctx.fillStyle = c===0? '#e0b567' : (c===1? '#2d8a6a' : '#b51212');
         ctx.fillRect(-p.s/2,-p.s/2,p.s,p.s);
         ctx.restore();
       });
-      if(particles.some(p=>p.a>0))requestAnimationFrame(tick);
+      if(particles.some(p=>p.a>0)) requestAnimationFrame(tick);
     }
 
+    /********
+     * INIT *
+     ********/
     (function init(){
       load();
-      const pad=n=>String(n).padStart(2,'0');
-      const now=new Date();
-      const fmt=`${pad(now.getDate())}/${pad(now.getMonth()+1)}/${now.getFullYear()}`;
-      $("today-pill").textContent=`Aujourd’hui : ${fmt}`;
+      const pad = n=> String(n).padStart(2,'0');
+      const now = new Date();
+      const fmt = `${pad(now.getDate())}/${pad(now.getMonth()+1)}/${now.getFullYear()}`;
+      $("today-pill").textContent = `Aujourd’hui : ${fmt}`;
       renderGrid();
     })();
   </script>
