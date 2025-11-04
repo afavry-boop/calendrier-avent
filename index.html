@@ -11,14 +11,14 @@
   <style>
     :root{
       /* Palette & tokens */
-      --bg:#F5ECE2;          /* Fond beige principal de la page */
+      --bg:#F5ECE2;          /* Fond beige principal */
       --card:#F5ECE2;        /* Fond clair des cartes et du modal */
-      --ink:#2b1f1f;         /* Couleur principale du texte (presque noir) */
-      --muted:#7f8aa3;       /* Texte secondaire (gris bleuté) */
-      --accent:#e0b567;      /* Doré pour les confettis et détails */
-      --accent-2:#2d8a6a;    /* vert succès */
-      --danger:#b51212;      /* rouge erreur */
-      --red:#BE1917;         /* rouge élégant */
+      --ink:#2b1f1f;         /* Texte principal */
+      --muted:#7f8aa3;       /* Texte secondaire */
+      --accent:#e0b567;      /* Doré (confettis/détails) */
+      --accent-2:#2d8a6a;    /* Vert succès */
+      --danger:#b51212;      /* Rouge erreur */
+      --red:#BE1917;         /* Rouge élégant */
       --shadow:0 8px 18px rgba(0,0,0,.10); /* Ombre douce */
     }
 
@@ -30,7 +30,6 @@
       -webkit-font-smoothing:antialiased;
       -moz-osx-font-smoothing:grayscale;
     }
-
     *{ box-sizing:border-box; }
 
     .wrap{
@@ -55,7 +54,7 @@
       margin-top:6px;
     }
 
-    /* Toolbar (en bas de page) */
+    /* Toolbar */
     .toolbar{
       display:flex;
       gap:12px;
@@ -73,15 +72,14 @@
       color:#6c6a6a;
     }
     .btn{
-  background: #000;
-  color: #fff;
-  border-radius: 6px;
-  border: none;
-  padding: 8px 14px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background 0.2s ease;
-}
+      background:#000;
+      color:#fff;
+      border-radius:6px;
+      border:none;
+      padding:8px 14px;
+      font-weight:600;
+      cursor:pointer;
+      transition:background .2s ease;
     }
     .btn:hover{ transform:translateY(-1px); }
 
@@ -98,7 +96,7 @@
     .door{
       position:relative;
       background:var(--card);
-      border:none;   
+      border:none;
       height:120px;
       display:flex;
       align-items:center;
@@ -111,21 +109,22 @@
       transition:all .2s ease-in-out;
       color:var(--red);
       cursor:pointer;
-      font-family:"Times New Roman"
+      font-family:"Times New Roman";
     }
-    .door:hover:not(.opened){ box-shadow:0 10px 18px rgba(0,0,0,.12); transform:translateY(-2px); }
-
+    .door:hover:not(.opened){
+      box-shadow:0 10px 18px rgba(0,0,0,.12);
+      transform:translateY(-2px);
+    }
     .door.locked{
       cursor:not-allowed;
       filter:none;
-      opacity:1; /* on ne grise plus */
+      opacity:1;
     }
     .door.opened{
       background:#F5ECE2;
-      box-shadow: none;
-      border:none
+      box-shadow:none;
+      border:none;
     }
-
     .door .num{
       position:absolute;
       top:8px; left:10px;
@@ -133,43 +132,29 @@
       font-size:32px;
       font-weight:500;
     }
+    .door.opened .num{ color:#D9A0A0; }
 
-    .door.opened .num {
-  color: #D9A0A0; /* num de la case */
-}
-
-    .badge{
-      position:absolute;
-      bottom:10px; right:10px;
-      font-size:12px;
-      font-style:italic;
-      padding:4px 8px;
-      border-radius:8px;
-      border:1px solid #E99D9C;
-      color:var(--red);
-      background:rgba(255,255,255,.5);
-    }
-
+    
     /* Modal */
     .modal-backdrop{
       position:fixed; inset:0;
-      background:none ;
+      background:none;
       backdrop-filter:blur(6px);
-      display:none; align-items:flex-start; justify-content:center;
+      display:none;
+      align-items:flex-start; justify-content:center;
       padding-top:12vh; z-index:50;
     }
-    
     .modal{
-      width: min(760px, calc(100vw - 32px));
-      background: #F4ECE3;
+      width:min(760px, calc(100vw - 32px));
+      background:#F4ECE3;
       border:1px solid rgba(0,0,0,.08);
       border-radius:8px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+      box-shadow:0 4px 12px rgba(0,0,0,.12);
       overflow:hidden;
       color:var(--ink);
       transform:translateY(0);
       transition:transform .25s ease;
-      font-family: "Times New Roman", serif;
+      font-family:"Times New Roman", serif;
     }
     .modal.shake{ animation:shake .3s ease; }
     @keyframes shake{
@@ -177,7 +162,6 @@
       40%{transform:translateX(8px)} 60%{transform:translateX(-5px)}
       80%{transform:translateX(5px)} 100%{transform:translateX(0)}
     }
-
     .modal-head{
       display:flex; align-items:center; justify-content:space-between;
       padding:20px 33px;
@@ -190,73 +174,72 @@
       background:transparent; border:none; font-size:24px; color:#846;
       cursor:pointer;
     }
-    .modal-body{ padding:10px 33px 20px; 
-    }
+    .modal-body{ padding:10px 33px 20px; }
 
     .anecdote{
-      background: none; /* pas de fond coloré */
-      border: none;
-      padding: 8px 0 12px;
-      font-size: 18px;
-      line-height: 1.6;
-      color: #BE1917; /* texte rouge élégant */
+      background:none;
+      border:none;
+      padding:8px 0 12px;
+      font-size:18px;
+      line-height:1.6;
+      color:#BE1917;
     }
 
-    .form {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  margin-top: 18px;
-}
-
-.hint {
-  font-family: "Parisienne" ;
-  font-size: 20px;
-  color: #2b1f1f;
-  margin-bottom: 4px;
-}
-
-  .row {
-  display: flex;
-  gap: 10px;
-  align-items: center;
-}
-
-    @media (max-width:560px){ .row{ grid-template-columns:1fr; } }
+    .form{
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      margin-top:18px;
+    }
+    .hint{
+      font-family:"Parisienne";
+      font-size:20px;
+      color:#2b1f1f;
+      margin-bottom:4px;
+    }
+    .row{
+      display:flex;
+      gap:10px;
+      align-items:center;
+    }
+    @media (max-width:560px){ .row{ flex-direction:column; align-items:stretch; } }
 
     select{
-    flex: 1;
-  padding: 8px 10px;
-  border-radius: 6px;
-  border: 1px solid rgba(0, 0, 0, 0.2);
-  background: #F4ECE3;
-  color: #2b1f1f;
-  font-family: "Lora", "Times New Roman", serif;
-  font-size: 15px;
-  outline: none;
+      flex:1;
+      padding:8px 10px;
+      border-radius:6px;
+      border:1px solid rgba(0,0,0,.2);
+      background:#F4ECE3;
+      color:#2b1f1f;
+      font-family:"Times New Roman", serif;
+      font-size:15px;
+      outline:none;
     }
 
     .result{ margin-top:10px; font-weight:700; }
     .ok{ color:var(--accent-2); }
     .ko{ color:var(--danger); }
 
-    .reveal{
-      display:none; margin-top:12px;
-      border:1px dashed rgba(0,0,0,.18);
-      border-radius:12px; padding:10px 12px;
-      color:var(--ink);
-    }
     .media{
       display:none; margin-top:14px;
     }
     .media iframe, .media video{
       width:100%; aspect-ratio:16/9; border:0; border-radius:12px;
       background:#000;
+      animation:popIn .6s ease;
+    }
+    @keyframes popIn{
+      from{ opacity:0; transform:scale(.95); }
+      to{ opacity:1; transform:scale(1); }
     }
 
     .footer{ margin-top:12px; display:flex; justify-content:flex-end; }
 
-    /* Confetti */
+    /* Petit style pour le message gagnant */
+    .win-msg{ margin-top:8px; }
+    .watch-tip{ margin-top:4px; font-style:italic; opacity:.85; }
+
+    /* Confettis */
     .confetti{ position:fixed; pointer-events:none; inset:0; overflow:hidden; z-index:60; }
   </style>
 </head>
@@ -294,9 +277,8 @@
           </div>
 
           <div class="result" id="result"></div>
-          <div class="reveal" id="reveal"></div>
 
-          <!-- Zone média (vidéo YouTube ou MP4) -->
+          <!-- Zone média (vidéo YouTube/Drive ou MP4) -->
           <div class="media" id="media"></div>
         </div>
 
@@ -321,23 +303,20 @@
 
     /********************
      * 24 JOURS (démo)  *
-     * Ajoute "video"   *
-     * (YouTube embed   *
-     *  ou .mp4 direct) *
      ********************/
     const DAYS = [
       {
         day: 1,
         anecdote: "Quand j’étais petite, je me suis faite renverser par un dromadaire au cirque 😅",
         answer: "Annabelle",
-        video: "https://drive.google.com/file/d/15Gj59tLS7MNQedKnMZBJb46EtlxWSJhR/preview" // à remplacer
+        video: "https://drive.google.com/file/d/15Gj59tLS7MNQedKnMZBJb46EtlxWSJhR/preview" // exemple Drive
       },
       ...Array.from({length:23}, (_,i)=>({
         day: i+2,
         anecdote: `Anecdote du jour ${i+2} — à personnaliser plus tard.`,
         answer: TEAM[i+1] || TEAM[0],
         aliases: TEAM[i+1] ? [TEAM[i+1], TEAM[i+1].toLowerCase()] : [],
-        video: "" // ← tu pourras mettre un lien ici (YouTube ou .mp4) pour chaque jour
+        video: "" // Renseigne un lien YouTube/Drive (embed) ou .mp4 si besoin
       }))
     ];
 
@@ -398,7 +377,7 @@
           class:`door ${!isUnlocked(d.day)?'locked':''} ${opened?'opened':''}`,
           "data-day":d.day
         });
-        door.appendChild(el("span", {class:"badge", text: opened ? "ouvert" : (isUnlocked(d.day) ? "dispo" : "verrouillé")}));
+        door.appendChild(el("span", {class:"badge", text: ""}));
         const dayLabel = String(d.day).padStart(2,'0');
         door.appendChild(el("div", {class:"num", text:dayLabel}));
         door.addEventListener("click", ()=>{ if(!isUnlocked(d.day)) return; openModal(d.day); });
@@ -416,7 +395,6 @@
           answerSelect = $("answerSelect"),
           submitBtn = $("submit"),
           result = $("result"),
-          revealBox = $("reveal"),
           mediaBox = $("media");
 
     let currentDay = 1;
@@ -438,8 +416,6 @@
       answerSelect.value = saved.answer || "";
       result.textContent = "";
       result.className = "result";
-      revealBox.style.display = "none";
-      revealBox.textContent = "";
       mediaBox.style.display = "none";
       mediaBox.innerHTML = "";
 
@@ -456,38 +432,38 @@
         result.className = "result ko";
         return;
       }
+
       const good = check(currentDay, guess);
-      state.opened[currentDay] = {answer:guess, correct:good};
+      state.opened[currentDay] = { answer: guess, correct: good };
 
-      const d = DAYS.find(x=>x.day===currentDay);
+      if (good) {
+        const d = DAYS.find(x => x.day === currentDay);
 
-      if(good){
-        result.textContent = `Bien joué 🎉 C’était ${d.answer} !`;
+        // Nouveau message incitatif (plus de "Réponse : ...")
         result.className = "result ok";
-        revealBox.textContent = `Réponse : ${d.answer}`;
-        revealBox.style.display = "block";
+        result.innerHTML = `
+          <div class="win-msg">
+            <strong>Bien joué&nbsp;! 🎉</strong> C’était <strong>${d.answer}</strong>.
+            <div class="watch-tip">🎬 Regarde la vidéo ci-dessous pour découvrir son FunFact&nbsp;!</div>
+          </div>
+        `;
+
+        // Affichage de la vidéo si configurée
+        if (d.video) {
+          if (d.video.trim().toLowerCase().endsWith('.mp4')) {
+            mediaBox.innerHTML = `<video controls playsinline src="${d.video}"></video>`;
+          } else {
+            mediaBox.innerHTML = `<iframe src="${d.video}" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
+          }
+          mediaBox.style.display = 'block';
+          mediaBox.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
         celebrate();
 
-        // Affiche la vidéo si définie (YouTube ou MP4)
-        if(d.video){
-          let mediaEl;
-          if(/\.(mp4|webm|ogg)$/i.test(d.video)){
-            mediaEl = document.createElement("video");
-            mediaEl.src = d.video;
-            mediaEl.controls = true;
-          }else{
-            mediaEl = document.createElement("iframe");
-            mediaEl.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
-            mediaEl.allowFullscreen = true;
-            mediaEl.src = d.video; // prévoir une URL embed YouTube
-          }
-          mediaBox.innerHTML = "";
-          mediaBox.appendChild(mediaEl);
-          mediaBox.style.display = "block";
-        }
-      }else{
-        result.textContent = "Loupé...! Essaie quelqu’un d’autre 😄";
+      } else {
         result.className = "result ko";
+        result.textContent = "Loupé…! Essaie quelqu’un d’autre 😉";
         modalBox.classList.add("shake");
         setTimeout(()=> modalBox.classList.remove("shake"), 400);
       }
