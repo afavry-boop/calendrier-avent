@@ -131,8 +131,21 @@
       color:var(--red);
       font-size:32px;
       font-weight:500;
+      z-index:2;
     }
     .door.opened .num{ color:#D9A0A0; }
+    .door .icon{
+      position:absolute;
+      bottom:8px;
+      right:8px;
+      width:50px;
+      height:50px;
+      object-fit:contain;
+      opacity:0.6;
+      transition:opacity .2s ease;
+    }
+    .door:hover:not(.opened) .icon{ opacity:0.8; }
+    .door.opened .icon{ opacity:0.25; }
 
     
     /* Modal */
@@ -304,6 +317,34 @@
     /********************
      * 24 JOURS (démo)  *
      ********************/
+  
+    const DAY_IMAGES = {
+      1: "img-calendrier 2/etoile-2.png",
+      2: "img-calendrier 2/houx.png",
+      3: "img-calendrier 2/etoile-1.png",
+      4: "img-calendrier 2/cloche.png",
+      5: "img-calendrier 2/boule.png",
+      6: "img-calendrier 2/cloche.png",
+      7: "img-calendrier 2/etoile-1.png",
+      8: "img-calendrier 2/ours.png",
+      9: "img-calendrier 2/houx.png",
+      10: "img-calendrier 2/cloche.png",
+      11: "img-calendrier 2/houx.png",
+      12: "img-calendrier 2/sucre.png",
+      13: "img-calendrier 2/sucre.png",
+      14: "img-calendrier 2/etoile-1.png",
+      15: "img-calendrier 2/sapin-traits.png",
+      16: "img-calendrier 2/etoile-2.png",
+      17: "img-calendrier 2/cadeau.png",
+      18: "img-calendrier 2/bougies.png",
+      19: "img-calendrier 2/cloche.png",
+      20: "img-calendrier 2/sapin-courbe.png",
+      21: "img-calendrier 2/cadeau.png",
+      22: "img-calendrier 2/etoile-1.png",
+      23: "img-calendrier 2/bougies.png",
+      24: "img-calendrier 2/houx.png"
+    };
+
     const DAYS = [
       {
         day: 1,
@@ -380,6 +421,10 @@
         door.appendChild(el("span", {class:"badge", text: ""}));
         const dayLabel = String(d.day).padStart(2,'0');
         door.appendChild(el("div", {class:"num", text:dayLabel}));
+        
+        const img = el("img", {class:"icon", src: DAY_IMAGES[d.day] || "", alt:""});
+        door.appendChild(img);
+        
         door.addEventListener("click", ()=>{ if(!isUnlocked(d.day)) return; openModal(d.day); });
         grid.appendChild(door);
       });
