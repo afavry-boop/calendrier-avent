@@ -530,6 +530,18 @@
       const fmt = `${pad(now.getDate())}/${pad(now.getMonth()+1)}/${now.getFullYear()}`;
       $("today-pill").textContent = `Aujourd’hui : ${fmt}`;
       renderGrid();
+
+      const urlParams = new URLSearchParams(window.location.search);
+      if (urlParams.get('mode') === 'test') {
+          state.dev = true;
+          save();
+          $('toggle-dev').textContent = 'Mode test (ON)';
+  
+      } else {
+     
+          $('toggle-dev').style.display = 'none';
+          $('reset').style.display = 'none';
+      }
     })();
   </script>
 </body>
