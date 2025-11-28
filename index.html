@@ -236,9 +236,15 @@
       display:none; margin-top:14px;
     }
     .media iframe, .media video{
-      width:100%; aspect-ratio:16/9; border:0; border-radius:12px;
+      width:100%; 
+      height:380px;
+      border:0; 
+      border-radius:12px;
       background:#000;
       animation:popIn .6s ease;
+    }
+    .media video{
+      object-fit:contain;
     }
     @keyframes popIn{
       from{ opacity:0; transform:scale(.95); }
@@ -314,6 +320,10 @@
 
       .anecdote{
         font-size: 17px;
+      }
+
+      .media iframe, .media video{
+        height: 320px;
       }
     }
 
@@ -430,6 +440,10 @@
 
       .media{
         margin-top: 12px;
+      }
+
+      .media iframe, .media video{
+        height: 300px;
       }
     }
 
@@ -565,127 +579,127 @@
         day: 1,
         anecdote: "J'ai failli me faire kidnapper au Mexique",
         answer: "Mostapha",
-        video: "https://drive.google.com/file/d/1nQEY2F6fqhStbtDQpA_JFp1x2wQVifS5/preview" // exemple Drive
+        video: "Vidéos calendrier de l_avent/jour-1.mp4"
       },
 
             {
         day: 2,
         anecdote: "Enfant, j'ai volé dans le jet privé de Johnny Hallyday",
         answer: "Thomas K.",
-        video: "https://drive.google.com/file/d/1zPWYlpBRAbAIJwNxg1_lO20FIuzX8BME/preview" // exemple Drive
+        video: "Vidéos calendrier de l_avent/jour-2.mp4"
       },
 
             {
         day: 3,
         anecdote: "J'ai déjeuné avec Bernard Tapie dans son célèbre hôtel particulier de la rue des Saint-Pères",
         answer: "Laurent A.",
-        video: "https://drive.google.com/file/d/1ez5RPwNs_E8EQl7VXjWqDX7EeGT-XUuD/preview" // exemple Drive
+        video: "Vidéos calendrier de l_avent/jour-3.mp4"
       },
       {
         day: 4,
         anecdote: "Enfant on m'appelait Harry Potter car j'ai une cicatrice sur le front",
         answer: "Camille",
-        video: "https://drive.google.com/file/d/12ZX4z-lmf9ea97JGaEALcVDujAJ10zsE/preview" // exemple Drive
+        video: "Vidéos calendrier de l_avent/jour-4.mp4"
       },
 
       {
         day: 5,
-        anecdote: "Quand j'était jeune, j’ai été DJ sur Radio FG",
+        anecdote: "Quand j'était jeune, j'ai été DJ sur Radio FG",
         answer: "Nicolas SP.",
-        video: "https://drive.google.com/file/d/1LeM25lT1PX58rmunVNCw4XyPkWLBTjNi/preview" // exemple Drive
+        video: "Vidéos calendrier de l_avent/jour-5.mp4"
       },
             {
         day: 6,
         anecdote: "Enfant, pour éviter un contrôle de maths, j'ai simulé un mal de ventre et on m'a opéré de l'appendicite",
         answer: "Maxime P.",
-        video: "https://drive.google.com/file/d/1y--ERYWWyXkCw2N9XdXx4twI9no-v0A7/preview" // exemple Drive
+        video: "Vidéos calendrier de l_avent/jour-6.mp4"
       },
       {
         day: 7,
         anecdote: "J'ai eu un accident de voiture avec l'auto-école en m'arrêtant brusquement au feu orange",
         answer: "Anna",
-        video: "https://drive.google.com/file/d/12bNvNj5D8Kkxfi8p6anS90c3FwxJD4Ax/preview" // exemple Drive
+        video: "Vidéos calendrier de l_avent/jour-7.mp4"
       },
             {
         day: 8,
-        anecdote: "L’aérospatial et l’aviation me passionnent",
+        anecdote: "L'aérospatial et l'aviation me passionnent",
         answer: "Anselme",
-        video: "https://drive.google.com/file/d/1V5UhufoA68E9b_pIlL8NMJ2ThqcDrlml/preview" // exemple Drive
+        video: "Vidéos calendrier de l_avent/jour-8.mp4"
       },
       {
         day: 9,
         anecdote: "Le chocolat noir me fait éternuer... Je fais partie des rares personnes dans le monde à ne pas aimer le chocolat !",
         answer: "Télio",
-        video: "https://drive.google.com/file/d/1woX4ds-f3ZpSaHX1l8UwJIC8QxsWwTvL/preview" // exemple Drive
+        video: "Vidéos calendrier de l_avent/jour-9.mp4"
       },
 
       {
         day: 10,
         anecdote: "J'ai perdu 1/4 d'un doigt dans une porte, il ne me reste qu'9.75 doigts",
         answer: "Lily",
-        video: "https://drive.google.com/file/d/1P2_GDFqWv4iMK3SN-dMAE3JngLfcUc-W/preview" // exemple Drive
+        video: "Vidéos calendrier de l_avent/jour-10.mp4"
       },
       {
         day: 11,
         anecdote: "Ma caméra de visio s'est branchée alors que j'étais sous la douche",
         answer: "Michael",
-        video: "https://drive.google.com/file/d/11_Aba4EeQf-gKC-ofLVTCFg0jz-1yVx2/preview" // exemple Drive
+        video: "Vidéos calendrier de l_avent/jour-11.mp4"
       },
 
       {
         day: 12,
         anecdote: "J'ai déjà nagé avec dix bullsharks à Miami",
         answer: "Romain P.",
-        video: "https://drive.google.com/file/d/1r-R4XO2IfXFyR5AjIets-OzEodT5kKsQ/preview" // exemple Drive
+        video: "Vidéos calendrier de l_avent/jour-12.mp4"
       },
             {
         day: 13,
         anecdote: "J'ai regardé Friends 16 fois, soit l'équivalent de 58 jours de ma vie... et je rigole toujours aux mêmes blagues !",
         answer: "Nathalie",
-        video: "https://drive.google.com/file/d/1BN49NXXPEqEsaswnjbXBLEcJNa0vJF3j/preview" // exemple Drive
+        video: "Vidéos calendrier de l_avent/jour-13.mp4"
       },
       {
         day: 14,
         anecdote: "Je fais partie des 0,001 % des auditeurs de Drake sur Spotify",
         answer: "Grégoire",
-        video: "https://drive.google.com/file/d/14OGfGfmI3fx9JIunTwesCmQd2Hhfo-iQ/preview" // exemple Drive
+        video: "Vidéos calendrier de l_avent/jour-14.mp4"
       },
       {
         day: 15,
-        anecdote: "J’ai fait huit ans de flûte traversière",
+        anecdote: "J'ai fait huit ans de flûte traversière",
         answer: "Briac",
-        video: "https://drive.google.com/file/d/10GAPMQlEOFWYmohG5eNDm3GvNBCwxW07/preview" // exemple Drive
+        video: "Vidéos calendrier de l_avent/jour-15.mp4"
       },
       {
         day: 16,
         anecdote: "J'ai vécu un gros tremblement de terre, pendant mon voyage de noces",
         answer: "Victor",
-        video: "https://drive.google.com/file/d/1e1WME9q6AsJq95r2F85vGPJtyd2wp8Zi/preview" // exemple Drive
+        video: "Vidéos calendrier de l_avent/jour-16.mp4"
       },
       {
         day: 17,
         anecdote: "à changer",
         answer: "Annabelle",
-        video: "https://drive.google.com/file/d/15Gj59tLS7MNQedKnMZBJb46EtlxWSJhR/preview" // exemple Drive
+        video: "Vidéos calendrier de l_avent/jour-17.mp4"
       },
 
       {
         day: 18,
         anecdote: "J'ai mis le feu à la cuisine d'une amie en faisant des Arancini",
         answer: "Nicolas R.",
-        video: "https://drive.google.com/file/d/1l4QEBYzF59FX_yLvdmimxOk78s_iJk9T/preview" // exemple Drive
+        video: "Vidéos calendrier de l_avent/jour-18.mp4"
       },
       {
         day: 19,
-        anecdote: "Je me suis retrouvé à l’urinoir à coté de Di Caprio en boite à LA en 2006",
+        anecdote: "Je me suis retrouvé à l'urinoir à coté de Di Caprio en boite à LA en 2006",
         answer: "Nicolas P.",
-        video: "https://drive.google.com/file/d/15Gj59tLS7MNQedKnMZBJb46EtlxWSJhR/preview" // exemple Drive
+        video: "Vidéos calendrier de l_avent/jour-19.mp4"
       },
       {
         day: 20,
         anecdote: "à changer",
         answer: "Mathieu",
-        video: "https://drive.google.com/file/d/1d_hv6Ce41DNRqGThYboTT7j3qjeGhJh_/preview" // exemple Drive
+        video: "Vidéos calendrier de l_avent/jour-20.mp4"
       },
       {
         day: 21,
@@ -849,7 +863,9 @@
         // Affichage de la vidéo si configurée
         if (d.video) {
           if (d.video.trim().toLowerCase().endsWith('.mp4')) {
-            mediaBox.innerHTML = `<video controls playsinline src="${d.video}"></video>`;
+            // Encoder correctement l'URL pour gérer les espaces et caractères spéciaux
+            const encodedPath = d.video.split('/').map(part => encodeURIComponent(part)).join('/');
+            mediaBox.innerHTML = `<video controls playsinline src="${encodedPath}"></video>`;
           } else {
             mediaBox.innerHTML = `<iframe src="${d.video}" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
           }
